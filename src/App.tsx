@@ -19,7 +19,7 @@ function App() {
           <a href="#experience">Experience</a>
         </nav>
         <a className="avatar" href="#top" aria-label={profile.name}>
-          AM
+          <img src={profile.avatar} alt="" width={40} height={40} />
         </a>
         <nav className="nav-right" aria-label="Primary right">
           <a href="#about">About</a>

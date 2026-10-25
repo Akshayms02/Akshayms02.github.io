@@ -1,12 +1,13 @@
 export const profile = {
   name: 'Akshay M S',
-  title: 'Junior Software Developer',
-  tagline: 'MERN / Full-Stack',
+  title: 'Full-Stack Developer',
+  tagline: 'MERN · Web & Mobile',
   email: 'akshayms02@gmail.com',
   phone: '+91 9048727372',
   summary:
     'Full-stack developer who ships production apps across web and mobile. Previously at HOGR — food delivery, AI companions, and end-to-end analytics (GA4, GTM, Meta Pixel).',
   status: 'Open to full-stack roles',
+  avatar: '/avatar.svg',
   links: {
     github: 'https://github.com/Akshayms02',
     linkedin: 'https://www.linkedin.com/in/akshay-m-s-058498204/',
