@@ -1,15 +1,15 @@
 :root {
-  color-scheme: light;
-  --bg: #f4f4f2;
-  --bg-soft: #ebebe8;
-  --ink: #111111;
-  --muted: #6b6b66;
-  --line: rgba(17, 17, 17, 0.1);
-  --chip: #ffffff;
+  color-scheme: dark;
+  --bg: #07090f;
+  --ink: #f5f7fb;
+  --muted: rgba(245, 247, 251, 0.62);
+  --line: rgba(245, 247, 251, 0.12);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.1);
   --font: 'Geist', system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --pad: clamp(1.25rem, 4vw, 3rem);
-  --max: 72rem;
+  --pad: clamp(1.1rem, 3.5vw, 2.5rem);
+  --max: 68rem;
 }
 
 *,
@@ -43,11 +43,7 @@ a {
   text-decoration: none;
 }
 
-button {
-  font: inherit;
-}
-
 ::selection {
-  background: #111111;
-  color: #f4f4f2;
+  background: #f5f7fb;
+  color: #07090f;
 }

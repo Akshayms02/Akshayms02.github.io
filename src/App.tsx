@@ -4,85 +4,86 @@ import './App.css'
 function App() {
   return (
     <div className="page">
-      <div className="wash" aria-hidden="true" />
+      <div className="atmosphere" aria-hidden="true">
+        <div className="glow glow-a" />
+        <div className="glow glow-b" />
+        <div className="grain" />
+      </div>
 
       <header className="nav">
-        <a className="logo" href="#top">
-          {profile.name}
-        </a>
-        <nav aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#experience">Experience</a>
-          <a href="#about">About</a>
-          <a className="nav-cta" href={profile.links.email}>
-            Let&apos;s chat →
+        <nav className="nav-left" aria-label="Primary left">
+          <a href="#work">
+            Work <span>({projects.length})</span>
           </a>
+          <a href="#experience">Experience</a>
+        </nav>
+        <a className="avatar" href="#top" aria-label={profile.name}>
+          AM
+        </a>
+        <nav className="nav-right" aria-label="Primary right">
+          <a href="#about">About</a>
+          <a href={profile.links.email}>Let&apos;s chat →</a>
         </nav>
       </header>
 
       <main id="top">
         <section className="hero">
-          <p className="hero-name fade up d1">{profile.name}</p>
-          <h1 className="hero-title fade up d2">
-            Building apps for teams who care about shipping clean product.
+          <h1 className="fade up d1">
+            Building apps for teams who care about{' '}
+            <em>shipping.</em>
           </h1>
-          <p className="hero-sub fade up d3">
-            Junior Software Developer · MERN / Full-Stack. Production web &amp;
-            mobile at HOGR — food delivery, AI companions, and analytics.
-          </p>
-          <div className="hero-actions fade up d4">
-            <a className="btn btn-dark" href="#work">
+          <div className="hero-actions fade up d2">
+            <a className="btn btn-primary" href="#work">
               View work
             </a>
-            <a className="btn btn-light" href="#experience">
-              Experience
+            <a className="btn btn-ghost" href="#about">
+              How I can help
             </a>
           </div>
+          <p className="currently fade up d3">
+            <span>Currently shipping at</span>
+            <strong>HOGR</strong>
+          </p>
         </section>
 
         <section className="section" id="work">
-          <div className="section-label">
-            <h2>Selected work</h2>
-            <p>Personal builds and product work worth opening.</p>
-          </div>
-
-          <div className="rows">
+          <p className="eyebrow">Selected work</p>
+          <div className="work-grid">
             {projects.map((project) => (
               <a
                 key={project.name}
-                className="row"
+                className="work-card"
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
               >
-                <div>
-                  <h3>{project.name}</h3>
-                  <p>{project.blurb}</p>
+                <div className="work-visual" aria-hidden="true">
+                  <span>{project.name.slice(0, 1)}</span>
                 </div>
-                <span className="row-meta">{project.kind}</span>
+                <div className="work-copy">
+                  <div>
+                    <h2>{project.name}</h2>
+                    <p>{project.blurb}</p>
+                  </div>
+                  <span>{project.kind}</span>
+                </div>
               </a>
             ))}
           </div>
         </section>
 
         <section className="section" id="experience">
-          <div className="section-label">
-            <h2>Currently &amp; recently</h2>
-            <p>Shipping live consumer products at HOGR.</p>
-          </div>
-
-          <div className="rows">
+          <p className="eyebrow">Experience</p>
+          <h2 className="section-title">Recently &amp; currently</h2>
+          <div className="experience-list">
             {experience.map((job) => (
-              <article key={`${job.role}-${job.period}`} className="job-block">
-                <div className="row static">
-                  <div>
-                    <h3>
-                      {job.company}
-                      <span> · {job.role}</span>
-                    </h3>
-                  </div>
-                  <span className="row-meta">{job.period}</span>
-                </div>
+              <article key={`${job.role}-${job.period}`}>
+                <header>
+                  <h3>
+                    {job.role} <span>@ {job.company}</span>
+                  </h3>
+                  <p>{job.period}</p>
+                </header>
                 <ul>
                   {job.points.map((point) => (
                     <li key={point}>{point}</li>
@@ -94,14 +95,14 @@ function App() {
         </section>
 
         <section className="section" id="about">
-          <div className="section-label">
-            <h2>How I can help</h2>
-            <p>{profile.summary}</p>
-          </div>
-
-          <div className="rows">
+          <p className="eyebrow">About</p>
+          <h2 className="section-title">
+            {profile.name} — {profile.title}
+          </h2>
+          <p className="about-lead">{profile.summary}</p>
+          <div className="skill-list">
             {skills.map((group) => (
-              <div key={group.label} className="row static skill-row">
+              <div key={group.label} className="skill-row">
                 <h3>{group.label}</h3>
                 <p>{group.items}</p>
               </div>
@@ -110,16 +111,16 @@ function App() {
         </section>
 
         <section className="section contact" id="contact">
-          <h2>Let&apos;s build something solid.</h2>
-          <p>
+          <h2 className="section-title">Let&apos;s chat</h2>
+          <p className="about-lead">
             Open to full-stack roles and product-minded engineering work.
           </p>
           <div className="hero-actions">
-            <a className="btn btn-dark" href={profile.links.email}>
-              {profile.email}
+            <a className="btn btn-primary" href={profile.links.email}>
+              Email me
             </a>
             <a
-              className="btn btn-light"
+              className="btn btn-ghost"
               href={profile.links.github}
               target="_blank"
               rel="noreferrer"
@@ -127,7 +128,7 @@ function App() {
               GitHub
             </a>
             <a
-              className="btn btn-light"
+              className="btn btn-ghost"
               href={profile.links.linkedin}
               target="_blank"
               rel="noreferrer"
@@ -141,7 +142,7 @@ function App() {
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span>Inspired by calm, design-led portfolios — rebuilt for engineering.</span>
+        <span>MERN / Full-Stack</span>
       </footer>
     </div>
   )
