@@ -7,13 +7,15 @@ export const profile = {
   summary:
     'Full-stack developer who ships production apps across web and mobile. Previously at HOGR — food delivery, AI companions, and end-to-end analytics (GA4, GTM, Meta Pixel).',
   status: 'Open to full-stack roles',
-  avatar: '/avatar.svg',
+  location: 'India · Remote-friendly',
   links: {
     github: 'https://github.com/Akshayms02',
     linkedin: 'https://www.linkedin.com/in/akshay-m-s-058498204/',
     email: 'mailto:akshayms02@gmail.com',
   },
 }
+
+export const tags = ['Full-Stack', 'MERN', 'APIs', 'Analytics', 'Flutter']
 
 export const experience = [
   {
@@ -42,21 +44,44 @@ export const experience = [
 export const projects = [
   {
     name: 'CureCue',
-    kind: 'Learning project · Doctor booking',
+    kind: 'Learning project',
+    category: 'Full-Stack',
     blurb:
-      'Built while learning full-stack: appointment scheduling, JWT auth, real-time notifications, Redis caching, and AWS S3 — React, TypeScript, and Node.',
+      'Built while learning software development — appointment booking with JWT auth, real-time notifications, Redis, and AWS S3.',
     href: 'https://github.com/Akshayms02/CureCue',
     image: '/project-curecue.svg',
-    accent: 'teal',
   },
   {
     name: 'Harmony Hue',
-    kind: 'Learning project · Fashion e-commerce',
+    kind: 'Learning project',
+    category: 'E-commerce',
     blurb:
-      'Built while learning full-stack: product variants, cart and wishlist, Razorpay payments, and order flows on Node/Express with Handlebars.',
+      'Built while learning software development — fashion store with variants, cart, wishlist, Razorpay, and order flows.',
     href: 'https://github.com/Akshayms02/Harmony-hue',
     image: '/project-harmony.svg',
-    accent: 'rose',
+  },
+]
+
+export const solutions = [
+  {
+    num: '01',
+    title: 'Full-stack web apps',
+    body: 'React + Node products from API design to polished UI.',
+  },
+  {
+    num: '02',
+    title: 'Backend & data',
+    body: 'Express services, SQL/NoSQL access, and reliable REST integrations.',
+  },
+  {
+    num: '03',
+    title: 'Product analytics',
+    body: 'GA4, GTM, and Meta Pixel instrumentation for events and conversions.',
+  },
+  {
+    num: '04',
+    title: 'Mobile with Flutter',
+    body: 'Client work alongside web stacks when the product needs mobile.',
   },
 ]
 

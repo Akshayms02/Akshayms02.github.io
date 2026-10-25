@@ -1,99 +1,187 @@
-import { experience, profile, projects, skills } from './data'
+import { useState } from 'react'
+import {
+  experience,
+  profile,
+  projects,
+  skills,
+  solutions,
+  tags,
+} from './data'
 import './App.css'
 
+const faq = [
+  {
+    q: 'What kind of roles are you looking for?',
+    a: 'Full-stack or backend-leaning roles where I can own features across web, APIs, and product analytics.',
+  },
+  {
+    q: 'What did you do at HOGR?',
+    a: 'Shipped food-delivery features, AI companion products, Flutter client work, and owned GA4 / GTM / Meta Pixel across live apps.',
+  },
+  {
+    q: 'Are CureCue and Harmony Hue client work?',
+    a: 'No — those are personal learning projects from when I was building my full-stack foundation. Professional work is listed under Experience.',
+  },
+  {
+    q: 'How can we start a conversation?',
+    a: 'Email me or reach out on LinkedIn. Happy to walk through projects, stack fit, and what you need built.',
+  },
+]
+
+function Icon({ name }: { name: 'home' | 'work' | 'about' | 'mail' }) {
+  const common = {
+    width: 18,
+    height: 18,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.8,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  }
+  if (name === 'home') {
+    return (
+      <svg {...common}>
+        <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z" />
+      </svg>
+    )
+  }
+  if (name === 'work') {
+    return (
+      <svg {...common}>
+        <rect x="3" y="7" width="18" height="13" rx="2" />
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+      </svg>
+    )
+  }
+  if (name === 'about') {
+    return (
+      <svg {...common}>
+        <circle cx="12" cy="8" r="3.2" />
+        <path d="M5 19c1.5-3.2 4-4.8 7-4.8s5.5 1.6 7 4.8" />
+      </svg>
+    )
+  }
+  return (
+    <svg {...common}>
+      <path d="M4 6h16v12H4z" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
+  )
+}
+
 function App() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0)
+
   return (
     <div className="page">
-      <div className="atmosphere" aria-hidden="true">
-        <div className="glow glow-a" />
-        <div className="glow glow-b" />
-        <div className="glow glow-c" />
-        <div className="grain" />
-      </div>
-
-      <header className="nav">
-        <nav className="nav-left" aria-label="Primary left">
-          <a href="#work">
-            Projects <span>({projects.length})</span>
+      <header className="nav-wrap">
+        <nav className="pill-nav" aria-label="Primary">
+          <a href="#top" className="nav-item active" aria-label="Home">
+            <Icon name="home" />
           </a>
-          <a href="#experience">Experience</a>
-        </nav>
-        <a className="avatar" href="#top" aria-label={profile.name}>
-          <img src={profile.avatar} alt="" width={40} height={40} />
-        </a>
-        <nav className="nav-right" aria-label="Primary right">
-          <a href="#about">About</a>
-          <a className="chat-link" href={profile.links.email}>
-            Let&apos;s chat →
+          <a href="#projects" className="nav-item" aria-label="Projects">
+            <Icon name="work" />
+          </a>
+          <a href="#about" className="nav-item" aria-label="About">
+            <Icon name="about" />
+          </a>
+          <a href="#contact" className="nav-item" aria-label="Contact">
+            <Icon name="mail" />
           </a>
         </nav>
       </header>
 
       <main id="top">
         <section className="hero">
-          <p className="hero-kicker fade up d1">{profile.name}</p>
+          <div className="tag-row fade up d1">
+            {tags.map((tag) => (
+              <span key={tag} className="tag">
+                {tag}
+              </span>
+            ))}
+          </div>
           <h1 className="fade up d2">
-            Building apps for teams who care about{' '}
-            <em>shipping.</em>
+            Bold thinking,
+            <br />
+            Better code.
           </h1>
           <p className="hero-sub fade up d3">
-            MERN / Full-Stack developer. Previously at HOGR — now looking for
-            the next product team to build with.
+            {profile.name} — {profile.title}. Previously at HOGR, now open to
+            full-stack roles.
           </p>
           <div className="hero-actions fade up d4">
-            <a className="btn btn-primary" href="#work">
-              View projects
+            <a className="btn mint" href="#projects">
+              See work
             </a>
-            <a className="btn btn-ghost" href={profile.links.email}>
-              Get in touch
+            <a className="btn ghost" href="#contact">
+              Let&apos;s talk
             </a>
           </div>
-          <p className="status-pill fade up d5">
-            <span className="dot" aria-hidden="true" />
+          <p className="status fade up d5">
+            <span className="dot" />
             {profile.status}
           </p>
         </section>
 
-        <section className="section" id="work">
-          <div className="section-head">
-            <p className="eyebrow">Learning projects</p>
-            <h2 className="section-title">
-              Built while learning software development
+        <section className="section" id="projects">
+          <div className="section-bar">
+            <h2>
+              Projects <span>({projects.length})</span>
             </h2>
-            <p className="section-note">
-              Personal full-stack builds from my learning path — separate from
-              professional work at HOGR.
-            </p>
+            <a href={profile.links.github} target="_blank" rel="noreferrer">
+              See all
+            </a>
           </div>
-          <div className="work-grid">
+          <p className="section-note">
+            Personal builds from my learning path — separate from HOGR work.
+          </p>
+          <div className="project-stack">
             {projects.map((project) => (
               <a
                 key={project.name}
-                className={`work-card accent-${project.accent}`}
+                className="project-card"
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
               >
-                <div className="work-visual">
+                <div className="project-media">
                   <img src={project.image} alt="" />
-                </div>
-                <div className="work-copy">
-                  <div>
-                    <p className="work-kind">{project.kind}</p>
-                    <h3>{project.name}</h3>
-                    <p className="work-blurb">{project.blurb}</p>
+                  <span className="chip">{project.category}</span>
+                  <div className="project-brand">
+                    <strong>{project.name}</strong>
+                    <em>{project.kind}</em>
                   </div>
-                  <span className="work-link">View on GitHub →</span>
+                </div>
+                <div className="project-meta">
+                  <h3>{project.name}</h3>
+                  <p>{project.blurb}</p>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
+        <section className="section" id="solutions">
+          <div className="section-bar">
+            <h2>
+              Solutions <span>(4)</span>
+            </h2>
+          </div>
+          <div className="solutions-grid">
+            {solutions.map((item) => (
+              <article key={item.num} className="solution-card">
+                <span>{item.num}.</span>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section" id="experience">
-          <div className="section-head">
-            <p className="eyebrow">Experience</p>
-            <h2 className="section-title">Previously at HOGR</h2>
+          <div className="section-bar">
+            <h2>Experience</h2>
           </div>
           <div className="experience-list">
             {experience.map((job) => (
@@ -115,14 +203,11 @@ function App() {
         </section>
 
         <section className="section" id="about">
-          <div className="section-head">
-            <p className="eyebrow">About</p>
-            <h2 className="section-title">
-              {profile.title}
-              <span className="title-muted"> · {profile.tagline}</span>
-            </h2>
+          <div className="section-bar">
+            <h2>About</h2>
           </div>
           <p className="about-lead">{profile.summary}</p>
+          <p className="about-lead soft">{profile.location}</p>
           <div className="skill-list">
             {skills.map((group) => (
               <div key={group.label} className="skill-row">
@@ -133,40 +218,72 @@ function App() {
           </div>
         </section>
 
-        <section className="section contact" id="contact">
-          <p className="eyebrow">Contact</p>
-          <h2 className="section-title">Let&apos;s build the next one together.</h2>
-          <p className="about-lead">
-            Open to full-stack roles and product-minded engineering work.
-          </p>
-          <div className="hero-actions left">
-            <a className="btn btn-primary" href={profile.links.email}>
-              {profile.email}
-            </a>
-            <a
-              className="btn btn-ghost"
-              href={profile.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              className="btn btn-ghost"
-              href={profile.links.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
+        <section className="section" id="faq">
+          <div className="section-bar">
+            <h2>
+              Most asked questions <span>({faq.length})</span>
+            </h2>
           </div>
-          <p className="phone">{profile.phone}</p>
+          <div className="faq-list">
+            {faq.map((item, index) => {
+              const open = openFaq === index
+              return (
+                <button
+                  key={item.q}
+                  type="button"
+                  className={`faq-item${open ? ' open' : ''}`}
+                  onClick={() => setOpenFaq(open ? null : index)}
+                  aria-expanded={open}
+                >
+                  <span className="faq-q">
+                    {item.q}
+                    <span aria-hidden="true">{open ? '−' : '+'}</span>
+                  </span>
+                  {open ? <span className="faq-a">{item.a}</span> : null}
+                </button>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="section contact-band" id="contact">
+          <div className="contact-card">
+            <p className="eyebrow">Work together</p>
+            <h2>Are you ready to take the next step?</h2>
+            <p>
+              Have a product idea or an open role? Let&apos;s shape something
+              you&apos;re proud to ship.
+            </p>
+            <div className="hero-actions">
+              <a className="btn mint" href={profile.links.email}>
+                Email me
+              </a>
+              <a
+                className="btn ghost"
+                href={profile.links.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
+            <p className="phone">{profile.phone}</p>
+          </div>
         </section>
       </main>
 
       <footer className="footer">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span>Available for full-stack roles</span>
+        <h2>Let&apos;s create something solid together</h2>
+        <div className="footer-links">
+          <a href={profile.links.github} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+          <a href={profile.links.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+          <a href={profile.links.email}>Email</a>
+        </div>
+        <p>© {new Date().getFullYear()} {profile.name}</p>
       </footer>
     </div>
   )
