@@ -7,6 +7,7 @@ function App() {
       <div className="atmosphere" aria-hidden="true">
         <div className="glow glow-a" />
         <div className="glow glow-b" />
+        <div className="glow glow-c" />
         <div className="grain" />
       </div>
 
@@ -22,50 +23,61 @@ function App() {
         </a>
         <nav className="nav-right" aria-label="Primary right">
           <a href="#about">About</a>
-          <a href={profile.links.email}>Let&apos;s chat →</a>
+          <a className="chat-link" href={profile.links.email}>
+            Let&apos;s chat →
+          </a>
         </nav>
       </header>
 
       <main id="top">
         <section className="hero">
-          <h1 className="fade up d1">
+          <p className="hero-kicker fade up d1">{profile.name}</p>
+          <h1 className="fade up d2">
             Building apps for teams who care about{' '}
             <em>shipping.</em>
           </h1>
-          <div className="hero-actions fade up d2">
+          <p className="hero-sub fade up d3">
+            MERN / Full-Stack developer. Previously at HOGR — now looking for
+            the next product team to build with.
+          </p>
+          <div className="hero-actions fade up d4">
             <a className="btn btn-primary" href="#work">
               View work
             </a>
-            <a className="btn btn-ghost" href="#about">
-              How I can help
+            <a className="btn btn-ghost" href={profile.links.email}>
+              Get in touch
             </a>
           </div>
-          <p className="currently fade up d3">
-            <span>Currently shipping at</span>
-            <strong>HOGR</strong>
+          <p className="status-pill fade up d5">
+            <span className="dot" aria-hidden="true" />
+            {profile.status}
           </p>
         </section>
 
         <section className="section" id="work">
-          <p className="eyebrow">Selected work</p>
+          <div className="section-head">
+            <p className="eyebrow">Selected work</p>
+            <h2 className="section-title">Projects that show the stack end to end</h2>
+          </div>
           <div className="work-grid">
             {projects.map((project) => (
               <a
                 key={project.name}
-                className="work-card"
+                className={`work-card accent-${project.accent}`}
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
               >
-                <div className="work-visual" aria-hidden="true">
-                  <span>{project.name.slice(0, 1)}</span>
+                <div className="work-visual">
+                  <img src={project.image} alt="" />
                 </div>
                 <div className="work-copy">
                   <div>
-                    <h2>{project.name}</h2>
-                    <p>{project.blurb}</p>
+                    <p className="work-kind">{project.kind}</p>
+                    <h3>{project.name}</h3>
+                    <p className="work-blurb">{project.blurb}</p>
                   </div>
-                  <span>{project.kind}</span>
+                  <span className="work-link">View on GitHub →</span>
                 </div>
               </a>
             ))}
@@ -73,8 +85,10 @@ function App() {
         </section>
 
         <section className="section" id="experience">
-          <p className="eyebrow">Experience</p>
-          <h2 className="section-title">Recently &amp; currently</h2>
+          <div className="section-head">
+            <p className="eyebrow">Experience</p>
+            <h2 className="section-title">Previously at HOGR</h2>
+          </div>
           <div className="experience-list">
             {experience.map((job) => (
               <article key={`${job.role}-${job.period}`}>
@@ -95,10 +109,13 @@ function App() {
         </section>
 
         <section className="section" id="about">
-          <p className="eyebrow">About</p>
-          <h2 className="section-title">
-            {profile.name} — {profile.title}
-          </h2>
+          <div className="section-head">
+            <p className="eyebrow">About</p>
+            <h2 className="section-title">
+              {profile.title}
+              <span className="title-muted"> · {profile.tagline}</span>
+            </h2>
+          </div>
           <p className="about-lead">{profile.summary}</p>
           <div className="skill-list">
             {skills.map((group) => (
@@ -111,13 +128,14 @@ function App() {
         </section>
 
         <section className="section contact" id="contact">
-          <h2 className="section-title">Let&apos;s chat</h2>
+          <p className="eyebrow">Contact</p>
+          <h2 className="section-title">Let&apos;s build the next one together.</h2>
           <p className="about-lead">
             Open to full-stack roles and product-minded engineering work.
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions left">
             <a className="btn btn-primary" href={profile.links.email}>
-              Email me
+              {profile.email}
             </a>
             <a
               className="btn btn-ghost"
@@ -142,7 +160,7 @@ function App() {
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span>MERN / Full-Stack</span>
+        <span>Available for full-stack roles</span>
       </footer>
     </div>
   )

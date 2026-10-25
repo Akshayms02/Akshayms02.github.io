@@ -5,7 +5,8 @@ export const profile = {
   email: 'akshayms02@gmail.com',
   phone: '+91 9048727372',
   summary:
-    'I ship production apps across web and mobile. At HOGR I built food-delivery features, AI companions, and owned analytics end-to-end — GA4, GTM, and Meta Pixel.',
+    'Full-stack developer who ships production apps across web and mobile. Previously at HOGR — food delivery, AI companions, and end-to-end analytics (GA4, GTM, Meta Pixel).',
+  status: 'Open to full-stack roles',
   links: {
     github: 'https://github.com/Akshayms02',
     linkedin: 'https://www.linkedin.com/in/akshay-m-s-058498204/',
@@ -44,6 +45,8 @@ export const projects = [
     blurb:
       'Appointment scheduling with JWT auth, real-time notifications, Redis caching, and AWS S3 — React, TypeScript, and Node.',
     href: 'https://github.com/Akshayms02/CureCue',
+    image: '/project-curecue.svg',
+    accent: 'teal',
   },
   {
     name: 'Harmony Hue',
@@ -51,6 +54,8 @@ export const projects = [
     blurb:
       'Product variants, cart and wishlist, Razorpay payments, and order flows on Node/Express with Handlebars.',
     href: 'https://github.com/Akshayms02/Harmony-hue',
+    image: '/project-harmony.svg',
+    accent: 'rose',
   },
 ]
 
