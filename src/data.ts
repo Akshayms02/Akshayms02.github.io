@@ -41,18 +41,18 @@ export const experience = [
 export const projects = [
   {
     name: 'CureCue',
-    kind: 'Doctor booking platform',
+    kind: 'Learning project · Doctor booking',
     blurb:
-      'Appointment scheduling with JWT auth, real-time notifications, Redis caching, and AWS S3 — React, TypeScript, and Node.',
+      'Built while learning full-stack: appointment scheduling, JWT auth, real-time notifications, Redis caching, and AWS S3 — React, TypeScript, and Node.',
     href: 'https://github.com/Akshayms02/CureCue',
     image: '/project-curecue.svg',
     accent: 'teal',
   },
   {
     name: 'Harmony Hue',
-    kind: 'E-commerce fashion store',
+    kind: 'Learning project · Fashion e-commerce',
     blurb:
-      'Product variants, cart and wishlist, Razorpay payments, and order flows on Node/Express with Handlebars.',
+      'Built while learning full-stack: product variants, cart and wishlist, Razorpay payments, and order flows on Node/Express with Handlebars.',
     href: 'https://github.com/Akshayms02/Harmony-hue',
     image: '/project-harmony.svg',
     accent: 'rose',

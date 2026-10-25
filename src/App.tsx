@@ -14,7 +14,7 @@ function App() {
       <header className="nav">
         <nav className="nav-left" aria-label="Primary left">
           <a href="#work">
-            Work <span>({projects.length})</span>
+            Projects <span>({projects.length})</span>
           </a>
           <a href="#experience">Experience</a>
         </nav>
@@ -42,7 +42,7 @@ function App() {
           </p>
           <div className="hero-actions fade up d4">
             <a className="btn btn-primary" href="#work">
-              View work
+              View projects
             </a>
             <a className="btn btn-ghost" href={profile.links.email}>
               Get in touch
@@ -56,8 +56,14 @@ function App() {
 
         <section className="section" id="work">
           <div className="section-head">
-            <p className="eyebrow">Selected work</p>
-            <h2 className="section-title">Projects that show the stack end to end</h2>
+            <p className="eyebrow">Learning projects</p>
+            <h2 className="section-title">
+              Built while learning software development
+            </h2>
+            <p className="section-note">
+              Personal full-stack builds from my learning path — separate from
+              professional work at HOGR.
+            </p>
           </div>
           <div className="work-grid">
             {projects.map((project) => (
